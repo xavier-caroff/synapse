@@ -1,0 +1,31 @@
+///
+/// @file VersionInfo.cpp
+/// 
+/// Implementation of VersionInfo class.
+/// 
+/// @author Xavier Caroff <xavier.caroff@free.fr>
+/// @copyright Copyright (c) 2024, Xavier Caroff
+///
+
+#include "synapse/framework/VersionInfo.h"
+
+namespace synapse {
+namespace framework {
+
+// Get access to the version information of the library.
+const VersionInfo& getVersion(
+	)
+{
+	static const VersionInfo	info = {
+		${PROJECT_VERSION_MAJOR},
+		${PROJECT_VERSION_MINOR},
+		${PROJECT_VERSION_PATCH},
+		"${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}",
+		"${PROJECT_DESCRIPTION}"
+	};
+
+	return info;
+}
+
+} // namespace framework
+} // namespace synapse

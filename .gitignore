@@ -1,0 +1,9 @@
+# CMake build folders
+build/
+build-*/
+# Redistribution folders
+redist/
+redist-*/
+# Visual Studio code files
+.vscode/*
+!.vscode/extensions.json

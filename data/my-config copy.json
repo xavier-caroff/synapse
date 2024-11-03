@@ -1,0 +1,82 @@
+{
+	"additionalPackageFolders": [
+    ],
+    "blocks": [
+        {
+            "name": "tcp-reader",
+            "className": "synapse::modules::io::TcpClientSource",
+            "config": {
+                "host": "127.0.0.1",
+                "port": 8080,
+                "retryDelay": 5
+            }
+        },
+        {
+            "name": "raw-tcp-file-logger",
+            "className": "synapse::modules::io::FileLoggerSink",
+            "config": {
+                "folder": "C:\\TEMP",
+                "fileNameTemplate": "tcp-raw.log",
+                "rotation": {
+                    "strategy": "time",
+                    "delay": 60
+                }
+            }
+        },
+        {
+            "name": "serial-reader",
+            "className": "synapse::modules::io::SerialSource",
+            "config": {
+            }
+        },
+        {
+            "name": "tcp-framer",
+            "className": "synapse::modules::io::FramerFiber",
+            "config": {
+                "start": "$",
+                "end": "\\r\\n"
+            }
+        },
+        {
+            "name": "serial-framer",
+            "className": "synapse::modules::io::FramerFiber",
+            "config": {
+                "start": "$",
+                "end": "\\r\\n"
+            }
+        },
+        {
+            "name": "tcp-server",
+            "className": "synapse::modules::io::TcpServerSink",
+            "config": {
+            }
+        },
+        {
+            "name": "file-logger",
+            "className": "synapse::modules::io::FileLoggerSink",
+            "config": {
+                "folder": "C:\\TEMP",
+                "fileNameTemplate": "tcp-framed.log",
+                "rotation": {
+                    "strategy": "time",
+                    "delay": 60
+                }
+            }
+        }
+	],
+    "routes": [
+        {
+            "sources": ["tcp-reader"],
+            "destinations": ["tcp-framer", "raw-tcp-file-logger"]
+        },
+        {
+            "sources": ["serial-reader"],
+            "destinations": ["serial-framer"],
+            "name": "toto"
+        },
+        {
+            "sources": ["tcp-framer", "serial-framer"],
+            "destinations": ["tcp-server", "file-logger"]
+        }
+    ]
+}

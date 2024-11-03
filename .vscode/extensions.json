@@ -1,0 +1,13 @@
+{
+	"recommendations": [
+		"eamodio.gitlens",
+		"hediet.vscode-drawio",
+		"ms-vscode.cpptools",
+		"ms-vscode.cpptools-themes",
+		"ms-vscode.cmake-tools",
+		"twxs.cmake",
+		"tyriar.luna-paint",
+		"cschlosser.doxdocgen",
+		"davidanson.vscode-markdownlint"
+	]
+}
