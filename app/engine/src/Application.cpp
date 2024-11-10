@@ -18,6 +18,8 @@
 
 #include <nlohmann/json.hpp>
 
+#include <spdlog/spdlog.h>
+
 #include <synapse/framework/VersionInfo.h>
 
 #include "Application.h"
@@ -189,6 +191,7 @@ Application::RunningMode Application::parseCommandLine(
 	// clang-format off
 	runOptionsDescription.add_options()
 		("config", po::value(&_runOptions.config)->required(), "configuration filename")
+		("filter", po::value(&_runOptions.filter)->default_value("info"), "The logger filter level (trace, debug, info, warning, error, critical, off)");
 		("cli-format", po::value(&cliFormat)->default_value("human"), "select the format of the CLI output ('human' or 'json')");
 	// clang-format on
 
@@ -246,6 +249,28 @@ Application::RunningMode Application::parseCommandLine(
 		store(po::command_line_parser(argc, argv).options(cmdlineOptions).positional(positionalOptions).run(), vm);
 		notify(vm);
 
+		{
+			static const std::map<std::string, spdlog::level::level_enum> LEVELS = {
+				{   "trace",    spdlog::level::trace},
+				{   "debug",    spdlog::level::debug},
+				{    "info",     spdlog::level::info},
+				{ "warning",     spdlog::level::warn},
+				{   "error",      spdlog::level::err},
+				{"critical", spdlog::level::critical},
+				{     "off",      spdlog::level::off},
+			};
+			auto itr = LEVELS.find(_runOptions.filter);
+
+			if (itr == LEVELS.end())
+
+			{
+				throw std::runtime_error("Invalid logger level");
+			}
+			else
+			{
+				spdlog::set_level(itr->second);
+			}
+		}
 		result = RunningMode::run;
 		found  = true;
 	}

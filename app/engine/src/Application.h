@@ -68,6 +68,9 @@ public:
 	{
 		/// Configuration filename.
 		std::filesystem::path config;
+
+		/// The logger filter level.
+		std::string           filter;
 	};
 
 	// Construction, destruction
