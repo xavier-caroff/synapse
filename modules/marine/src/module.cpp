@@ -14,6 +14,7 @@
 #include <synapse/framework/Registry.h>
 
 #include "Nmea0183FramerFiber.h"
+#include "Nmea0183RouterFiber.h"
 
 #define API extern "C" BOOST_SYMBOL_EXPORT
 
@@ -25,6 +26,7 @@ API void registerBlocks(
 	synapse::framework::Registry& registry)
 {
 	registry.registerDescription(synapse::modules::marine::Nmea0183FramerFiber::description());
+	registry.registerDescription(synapse::modules::marine::Nmea0183RouterFiber::description());
 }
 
 /// Perpare the module's logger.

@@ -9,7 +9,9 @@ find_package(spdlog REQUIRED)
 # List of source files of the unit tests.
 set(SRC
 	../../../../modules/marine/src/Nmea0183FramerFiber.cpp
-	src/Nmea0183FramerFiberTest.cpp)
+	../../../../modules/marine/src/Nmea0183RouterFiber.cpp
+	src/Nmea0183FramerFiberTest.cpp
+	src/Nmea0183RouterFiberTest.cpp)
 
 # Definition of the unit test executable.
 add_executable(synapse-test ${SRC})
