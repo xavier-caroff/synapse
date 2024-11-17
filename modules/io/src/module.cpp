@@ -13,6 +13,7 @@
 
 #include <synapse/framework/Registry.h>
 
+#include "ConsoleLoggerSink.h"
 #include "FileLoggerSink.h"
 #include "FramerFiber.h"
 #include "SerialSource.h"
@@ -28,6 +29,7 @@
 API void registerBlocks(
 	synapse::framework::Registry& registry)
 {
+	registry.registerDescription(synapse::modules::io::ConsoleLoggerSink::description());
 	registry.registerDescription(synapse::modules::io::FileLoggerSink::description());
 	registry.registerDescription(synapse::modules::io::FramerFiber::description());
 	registry.registerDescription(synapse::modules::io::SerialSource::description());

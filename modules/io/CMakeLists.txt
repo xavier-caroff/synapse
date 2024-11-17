@@ -12,6 +12,7 @@ find_package(spdlog REQUIRED)
 
 # List of source files of the library (excluding generated files).
 set(SRC
+	src/ConsoleLoggerSink.cpp
 	src/FileLoggerSink.cpp
 	src/FramerFiber.cpp
 	src/SerialSource.cpp
