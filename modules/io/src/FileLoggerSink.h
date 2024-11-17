@@ -22,7 +22,7 @@ namespace modules {
 namespace io {
 
 ///
-/// Implement a block that read data from a serial port.
+/// Implement a block that logs incoming data to a file.
 ///
 class FileLoggerSink :
 	public synapse::framework::Sink

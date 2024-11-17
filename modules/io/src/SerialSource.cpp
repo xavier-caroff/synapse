@@ -35,6 +35,8 @@ void SerialSource::initialize(
 	const ConfigData&             configData,
 	synapse::framework::IManager* manager)
 {
+	(void) configData; // Unused parameter.
+	(void) manager;    // Unused parameter.
 }
 
 // Ask the component to prepare to be deleted (terminate all pending operations).

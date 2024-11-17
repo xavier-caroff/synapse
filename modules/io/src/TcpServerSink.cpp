@@ -37,12 +37,15 @@ void TcpServerSink::initialize(
 	const ConfigData&             configData,
 	synapse::framework::IManager* manager)
 {
+	(void) configData; // Unused parameter.
+	(void) manager;    // Unused parameter.
 }
 
 // Process a message in the context of the runnable.
 void TcpServerSink::process(
 	const std::shared_ptr<synapse::framework::Message>& message)
 {
+	(void) message; // Unused parameter.
 }
 
 } // namespace io

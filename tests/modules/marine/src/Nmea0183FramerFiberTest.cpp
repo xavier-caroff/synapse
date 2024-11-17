@@ -153,21 +153,21 @@ TEST(Nmea0183FramerFiber, consume)
 	public:
 
 		synapse::framework::IBlock* create(
-			const std::string& name,
-			const std::string& className) override final
+			const std::string&,
+			const std::string&) override final
 		{
 			return nullptr;
 		}
 
 		synapse::framework::IBlock* find(
-			const std::string& name) const override final
+			const std::string&) const override final
 		{
 			return nullptr;
 		}
 
 		synapse::framework::IPort* find(
-			synapse::framework::IBlock* block,
-			const std::string&          name) const override final
+			synapse::framework::IBlock*,
+			const std::string&) const override final
 		{
 			return std::addressof(port);
 		}
@@ -230,7 +230,7 @@ TEST(Nmea0183FramerFiber, consume)
 	object = nullptr;
 
 	EXPECT_EQ(manager.port.messages.size(), DATA.size());
-} // namespace marine
+}
 
 } // namespace marine
 } // namespace modules
