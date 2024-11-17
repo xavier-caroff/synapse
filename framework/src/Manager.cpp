@@ -246,8 +246,10 @@ void Manager::loadModules(
 			{
 				boost::dll::shared_library lib(current.path().string());
 				auto                       registerBlocks = lib.get<void(Registry&)>(Registry::ENTRY_POINT_FUNCTION);
+				auto                       prepareLogger  = lib.get<void(const std::string&, spdlog::level::level_enum)>(Registry::PREPARE_LOGGER_FUNCTION);
 
 				registerBlocks(_registry);
+				prepareLogger("%^%l%$: %v", spdlog::get_level());
 
 				_modules.push_back(std::move(lib));
 				spdlog::info("Module {} loaded", current.path().string());

@@ -31,6 +31,9 @@ public:
 	/// The name of the entry point function.
 	static const char constexpr* ENTRY_POINT_FUNCTION{ "registerBlocks" };
 
+	/// The name of the function to prepare the logger of the module.
+	static const char constexpr* PREPARE_LOGGER_FUNCTION{ "prepareLogger" };
+
 	/// Defintion of the signature of the function to create a component.
 	using CreateFunction = std::add_pointer<IBlock*(const std::string&)>::type;
 
