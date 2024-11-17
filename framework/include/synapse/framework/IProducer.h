@@ -11,6 +11,7 @@
 #include <list>
 #include <string>
 
+#include "IBlock.h"
 #include "Message.h"
 
 namespace synapse {
@@ -26,7 +27,12 @@ class IProducer
 public:
 
 	/// Get the list of output ports.
-	virtual std::list<std::string> ports() = 0;
+	///
+	/// @param[in] configData The configuration data of the block.
+	///
+	/// @return The list of the names of the output ports.
+	virtual std::list<std::string> ports(
+		const IBlock::ConfigData& configData) = 0;
 };
 
 } // namespace framework

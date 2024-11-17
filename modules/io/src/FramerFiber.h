@@ -78,7 +78,11 @@ public:
 public:
 
 	/// Get the list of output ports.
-	std::list<std::string> ports() override final { return { OUTPUT_PORT_NAME }; }
+	///
+	/// @param[in] configData The configuration data of the block.
+	///
+	/// @return The list of the names of the output ports.
+	std::list<std::string> ports(const IBlock::ConfigData&) override final { return { OUTPUT_PORT_NAME }; }
 
 	// Implementation of IConsumer
 

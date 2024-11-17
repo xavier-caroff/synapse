@@ -285,7 +285,7 @@ void Manager::createBlocks(
 		{
 			std::map<std::string, bool> ports;
 
-			for (auto& portName : producer->ports())
+			for (auto& portName : producer->ports(current.at("config")))
 			{
 				// Check the name is valid.
 				if (!isValidName(portName))
