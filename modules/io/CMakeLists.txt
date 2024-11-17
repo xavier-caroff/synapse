@@ -24,6 +24,12 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 add_library(synapse-modules-io SHARED ${SRC})
 
+if(MSVC)
+	target_compile_definitions(synapse-modules-io
+		PRIVATE
+		"_WIN32_WINNT=_WIN32_WINNT_WIN7")
+endif()
+
 target_link_libraries(synapse-modules-io
 	PUBLIC
 		synapse-framework

@@ -23,6 +23,12 @@ set(SRC
 
 add_executable(synapse-app-msg-server ${SRC})
 
+if(MSVC)
+	target_compile_definitions(synapse-app-msg-server
+		PRIVATE
+		"_WIN32_WINNT=_WIN32_WINNT_WIN7")
+endif()
+
 target_link_libraries(synapse-app-msg-server
 	PRIVATE
 		Boost::program_options
