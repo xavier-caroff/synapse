@@ -16,6 +16,19 @@ project(synapse
 	LANGUAGES CXX)
 
 # ------------------------------------------------------------------------------
+# Adjust compiler settings for Conan
+# ------------------------------------------------------------------------------
+
+# Use libc++ instead of libstdc++ when using Clang
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+endif()
+
+# Set compiler options to C++ 20 standard.
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# ------------------------------------------------------------------------------
 # Conan stuff to get dependencies.
 # ------------------------------------------------------------------------------
 
@@ -54,6 +67,13 @@ else() # in user space
 			TLS_VERIFY
 				ON)
 	endif()
+
+	# Adjust boost options when compiling on raspberry pi.
+	if(LINUX AND CMAKE_SYSTEM_PROCESSOR STREQUAL "aarch64")
+		set(CONAN_OPTIONS
+			boost:without_locale=True
+			boost:without_stacktrace=True)
+	endif()
 	
 	include(${CMAKE_BINARY_DIR}/conan.cmake)
 	
@@ -67,6 +87,8 @@ else() # in user space
 			gtest/1.15.0
 			nlohmann_json/3.11.3
 			spdlog/1.14.1
+		OPTIONS
+			${CONAN_OPTIONS}
 		GENERATORS
 			cmake_find_package)
 
