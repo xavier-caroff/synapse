@@ -38,7 +38,7 @@ public:
 	};
 
 	/// Default size of the buffer to store intermediate data.
-	static const size_t DEFAULT_BUFFER_SIZE{ 1024 };
+	static constexpr size_t DEFAULT_BUFFER_SIZE{ 1024 };
 
 	// Construction, destruction
 
