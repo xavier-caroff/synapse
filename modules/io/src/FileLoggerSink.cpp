@@ -46,6 +46,10 @@ void from_json(
 
 		switch (object.rotationStrategy)
 		{
+		default:
+		case FileLoggerSink::RotationStrategy::none:
+			// Nothing to do
+			break;
 		case FileLoggerSink::RotationStrategy::time:
 			object.rotationDelay = std::chrono::minutes{ json.at("rotation").at("delay") };
 			break;
