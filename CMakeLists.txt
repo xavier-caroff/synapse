@@ -69,7 +69,7 @@ else() # in user space
 	endif()
 
 	# Adjust boost options when compiling on raspberry pi.
-	if(LINUX AND CMAKE_SYSTEM_PROCESSOR STREQUAL "aarch64")
+	if(LINUX)
 		set(CONAN_OPTIONS
 			boost:without_locale=True
 			boost:without_stacktrace=True)
