@@ -33,7 +33,7 @@ set(SRC
 # Definition of the library.
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-add_library(synapse-framework ${SRC})
+add_library(synapse-framework SHARED ${SRC})
 
 # Precompilated header feature to speed up the build process.
 target_precompile_headers(synapse-framework
