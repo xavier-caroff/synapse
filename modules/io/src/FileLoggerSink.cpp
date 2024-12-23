@@ -89,7 +89,7 @@ void FileLoggerSink::process(
 	bool rotate =
 		(_fileInfo &&
 		 _config.rotationStrategy == FileLoggerSink::RotationStrategy::time &&
-		 std::chrono::utc_clock::now() >= _fileInfo->origin + _config.rotationDelay) ||
+		 clock::now() >= _fileInfo->origin + _config.rotationDelay) ||
 		(_fileInfo &&
 		 _config.rotationStrategy == FileLoggerSink::RotationStrategy::size &&
 		 _fileInfo->size >= _config.rotationSize);
@@ -108,7 +108,7 @@ void FileLoggerSink::process(
 	// Prepare file info if not intialized.
 	if (!_fileInfo)
 	{
-		auto now        = std::chrono::utc_clock::now();
+		auto now        = clock::now();
 		auto nowSeconds = std::chrono::time_point_cast<std::chrono::seconds>(now);
 
 		_fileInfo = {

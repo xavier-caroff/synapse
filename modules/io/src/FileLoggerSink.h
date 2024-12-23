@@ -102,22 +102,26 @@ protected:
 
 private:
 
+	/// The clock used to do timestamping.
+	/// @todo Replace system clock by UTC clock when available with Clang.
+	using clock = std::chrono::system_clock;
+
 	///
 	/// Information about the stream where data are currently written.
 	///
 	struct FileInfo
 	{
 		/// The full path of the file.
-		std::filesystem::path              path;
+		std::filesystem::path path;
 
 		/// The timestamp of the opening of the file.
-		std::chrono::utc_clock::time_point origin;
+		clock::time_point     origin;
 
 		/// The number of bytes logged into the file.
-		uint64_t                           size;
+		uint64_t              size;
 
 		/// The file stream.
-		std::ofstream                      stream;
+		std::ofstream         stream;
 	};
 
 	// Private attributes
