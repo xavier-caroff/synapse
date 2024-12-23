@@ -41,6 +41,13 @@ public:
 		error,
 	};
 
+	// Construction, destruction
+
+public:
+
+	/// Destructor.
+	virtual ~IUserInterface() { }
+
 	// Operations
 
 public:
