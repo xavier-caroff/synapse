@@ -18,7 +18,6 @@ set(SRC
 	src/SerialSource.cpp
 	src/TcpClientSource.cpp
 	src/TcpServerSink.cpp
-	src/main.cpp
 	src/module.cpp)
 
 # Definition of the library.

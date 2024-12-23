@@ -14,7 +14,6 @@ find_package(spdlog REQUIRED)
 set(SRC
 	src/Nmea0183FramerFiber.cpp
 	src/Nmea0183RouterFiber.cpp
-	src/main.cpp
 	src/module.cpp)
 
 # Definition of the library.

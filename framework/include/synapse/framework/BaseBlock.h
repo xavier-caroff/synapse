@@ -126,7 +126,7 @@ synapse::framework::IBlock* className::create(										\
 
 // Read configuration data.
 template<class T>
-inline static T BaseBlock::readConfig(
+inline T BaseBlock::readConfig(
 	const ConfigData& configData)
 {
 	T result;

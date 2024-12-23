@@ -12,7 +12,6 @@ find_package(spdlog REQUIRED)
 
 # List of source files of the library (excluding generated files).
 set(SRC
-	src/main.cpp
 	src/module.cpp)
 
 # Definition of the library.

@@ -191,7 +191,7 @@ Application::RunningMode Application::parseCommandLine(
 	// clang-format off
 	runOptionsDescription.add_options()
 		("config", po::value(&_runOptions.config)->required(), "configuration filename")
-		("filter", po::value(&_runOptions.filter)->default_value("info"), "The logger filter level (trace, debug, info, warning, error, critical, off)");
+		("filter", po::value(&_runOptions.filter)->default_value("info"), "The logger filter level (trace, debug, info, warning, error, critical, off)")
 		("cli-format", po::value(&cliFormat)->default_value("human"), "select the format of the CLI output ('human' or 'json')");
 	// clang-format on
 
