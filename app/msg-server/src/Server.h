@@ -59,22 +59,35 @@ private:
 	/// Wait for the timer before sending a message to the clients.
 	void doWait();
 
+	// Private definitions
+
+private:
+
+	/// A client connected to the server.
+	struct Client
+	{
+		/// The socket to communicate with the client.
+		boost::asio::ip::tcp::socket   socket;
+		/// The client endpoint.
+		boost::asio::ip::tcp::endpoint endpoint;
+	};
+
 	// Private attributes
 
 private:
 
-	boost::asio::io_context&                _ioc;
-	IUserInterface*                         _ui;
-	boost::asio::ip::tcp::acceptor          _acceptor;
-	boost::asio::ip::tcp::socket            _socket;
-	std::list<boost::asio::ip::tcp::socket> _clients;
-	boost::asio::steady_timer               _timer;
-	uint8_t*                                _message{ nullptr };
-	boost::asio::steady_timer::duration     _delay;
-	std::ifstream                           _stream;
-	std::filesystem::path                   _path;
-	size_t                                  _blockSize;
-	bool                                    _loop;
+	boost::asio::io_context&            _ioc;
+	IUserInterface*                     _ui;
+	boost::asio::ip::tcp::acceptor      _acceptor;
+	boost::asio::ip::tcp::socket        _socket;
+	std::list<Client>                   _clients;
+	boost::asio::steady_timer           _timer;
+	uint8_t*                            _message{ nullptr };
+	boost::asio::steady_timer::duration _delay;
+	std::ifstream                       _stream;
+	std::filesystem::path               _path;
+	size_t                              _blockSize;
+	bool                                _loop;
 };
 
 } // namespace msgsrv

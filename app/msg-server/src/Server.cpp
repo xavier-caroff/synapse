@@ -74,12 +74,15 @@ void Server::doAccept()
 		[this](boost::system::error_code ec) {
 			if (!ec)
 			{
+				auto   endpoint = _socket.remote_endpoint();
+				Client client{ std::move(_socket), endpoint };
+
 				_ui->message(
 					IUserInterface::Severity::info,
 					fmt::format("New connection from {}:{}",
-								_socket.remote_endpoint().address().to_string(),
-								_socket.remote_endpoint().port()));
-				_clients.emplace_back(std::move(_socket));
+								endpoint.address().to_string(),
+								endpoint.port()));
+				_clients.emplace_back(std::move(client));
 				if (_clients.size() == 1)
 				{
 					doWait();
@@ -119,23 +122,23 @@ void Server::doWait()
 
 				for (auto& client : _clients)
 				{
-					auto endPoint = client.remote_endpoint();
+					auto endpoint = client.endpoint;
 
 					boost::asio::async_write(
-						client,
+						client.socket,
 						boost::asio::buffer(_message, read),
-						[this, endPoint](boost::system::error_code ec, std::size_t /*length*/) {
+						[this, endpoint](boost::system::error_code ec, std::size_t /*length*/) {
 							if (ec)
 							{
 								_ui->message(
 									IUserInterface::Severity::error,
 									fmt::format(
 										"Error sending message to {}:{}: {}",
-										endPoint.address().to_string(),
-										endPoint.port(),
+										endpoint.address().to_string(),
+										endpoint.port(),
 										ec.message()));
 								_clients.remove_if(
-									[endPoint](auto& socket) { return socket.remote_endpoint() == endPoint; });
+									[endpoint](auto& item) { return item.endpoint == endpoint; });
 							}
 						});
 				}
