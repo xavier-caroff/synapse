@@ -8,6 +8,7 @@
 		"twxs.cmake",
 		"tyriar.luna-paint",
 		"cschlosser.doxdocgen",
-		"davidanson.vscode-markdownlint"
+		"davidanson.vscode-markdownlint",
+		"vadimcn.vscode-lldb"
 	]
 }
